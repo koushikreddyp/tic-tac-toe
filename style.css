@@ -1,3 +1,4 @@
+/* --- Universal Base Styles --- */
 * {
     margin: 0;
     padding: 0;
@@ -5,21 +6,42 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-    background-color: #0a0a0a;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.header {
-    width: 100vw;
-    height: 48px;
+body {
+    background-color: #0D1117; /* Modern dark background */
+    color: #c9d1d9; /* Softer white for text */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    text-align: center;
+    padding: 0 20px 20px;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 960px; /* Constrains content width on large screens */
+    margin: 0 auto; /* Centers the main content block */
+}
+
+/* --- Header --- */
+.header-nav {
+    width: 100%;
+    height: 60px; /* Slightly more vertical space */
     color: #fff;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     padding: 0 24px;
-    margin-top: -10px;
+    margin-bottom: 20px; /* Adds space between header and main content */
 }
 
 .logo {
@@ -29,121 +51,143 @@ body {
     text-transform: uppercase;
 }
 
-.container {
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -25px;
-}
-
+/* --- Main Game Container (Tic-Tac-Toe Board) --- */
 .game {
-    height: 60vmin;
-    width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5vmin;
-    justify-content: center;
-    align-items: center;
-    padding: 1vmin;
-    background-color: #1a1a1a;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+    display: grid; /* Using grid is often better for a tic-tac-toe board */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 50vmin;
+    height: 50vmin;
+    max-width: 450px;
+    max-height: 450px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .box {
-    height: 18vmin;
-    width: 18vmin;
-    font-size: 5rem;
-    background-color: #ffffff;
-    color: #000000;
-    border: 2px solid #111;
-    outline: none;
+    background-color: #161B22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    font-size: 8vmin;
+    font-weight: bold;
+    color: #c9d1d9;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.15s;
+    transition: background-color 0.2s, transform 0.15s, border-color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .box:hover:not(:disabled) {
-    background-color: #eaeaea;
-    transform: scale(1.03);
+    background-color: #1c222a;
+    border-color: #8892b0;
+    transform: translateY(-4px);
 }
 
 .box:disabled {
     cursor: default;
+    color: #8892b0;
 }
 
+/* --- Buttons & Scores --- */
 #reset-btn {
-    background-color: #000000;
+    background-color: #238636; /* GitHub-style green button */
     color: #ffffff;
-    border: 2px solid #fff;
-    padding: 12px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 24px;
     font-size: 1rem;
-    font-weight: 600;
-    margin: 0px;
+    font-weight: 500;
+    margin-top: 40px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.2s;
 }
 
+#reset-btn:hover {
+    background-color: #2ea043;
+}
 
 .scores {
     display: flex;
     justify-content: center;
     gap: 50px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
     color: #ffffff;
+}
+
+.scores p {
+    font-size: 3rem;
+    color: #8892b0;
+    margin-bottom: 5px;
 }
 
 .points {
     font-size: 2.4rem;
     font-weight: 600;
-}
-
-@media screen and (max-width: 600px) {
-    .game {
-        height: 90vmin;
-        width: 90vmin;
-    }
-
-    .box {
-        height: 28vmin;
-        width: 28vmin;
-        font-size: 3rem;
-    }
-
-    .points {
-        font-size: 2rem;
-    }
+    color: #fff;
 }
 
 
+/* --- Footer --- */
 .footer {
     width: 100%;
-    padding: 20px 40px;
-    color: #aaa;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 0;
+    color: #8892b0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
+    margin-top: auto; /* Pushes footer to the bottom */
+    border-top: 1px solid #30363d;
 }
 
-.footer-content p {
+.footer-left p {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
-.socials {
+.footer-right {
     display: flex;
     gap: 24px;
 }
 
 .footer a {
-    color: #fff;
+    color: #c9d1d9;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease;
 }
 
 .footer a:hover {
-    color: rgba(201, 201, 255, 0.933);
+    color: #58a6ff;
+}
+
+/* --- Media Queries --- */
+@media screen and (max-width: 600px) {
+    body { padding: 0 15px 15px; }
+    .header { justify-content: center; }
+
+    .game {
+        width: 80vmin;
+        height: 80vmin;
+    }
+    
+    .box {
+        font-size: 12vmin;
+    }
+
+    .points {
+        font-size: 2rem;
+    }
+    
+    .footer {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }
